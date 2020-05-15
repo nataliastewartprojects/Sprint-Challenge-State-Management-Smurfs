@@ -31,6 +31,7 @@ const SmurfForm = (props) => {
 
   return (
     <div>
+      <h2>Add a new friend below:</h2>
       <form className="smurf-form" onSubmit={(e) => handleSubmit(e)}>
         <label htmlFor="name">
           Name:

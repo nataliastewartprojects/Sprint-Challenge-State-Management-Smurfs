@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { getSmurfs } from "../actions";
 
 const SmurfList = (props) => {
+  const [search, setSearch] = useState("");
+
+  const filteredFriends = props.smurfsGroup.filter((item) => {
+    return item.name.toLowerCase().includes(search.toLocaleLowerCase());
+  });
+
   return (
     <div>
       <p>Click on Gargamel to get all her friends!</p>
@@ -12,8 +18,13 @@ const SmurfList = (props) => {
         alt="gargamel smurf"
         onClick={() => props.getSmurfs()}
       />
+      <input
+        type="text"
+        placeholder="Search a friend!"
+        onChange={(e) => setSearch(e.target.value)}
+      />
 
-      {props.smurfsGroup.map((item) => {
+      {filteredFriends.map((item) => {
         return (
           <div key={item.id}>
             <h2>{item.name}</h2>
