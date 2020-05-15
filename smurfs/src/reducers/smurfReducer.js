@@ -25,7 +25,7 @@ const reducer = (state = initialState, action) => {
         fecthingSmurfs: false,
         error: "",
       };
-    case FETCH_SMURFS_SUCCESS:
+    case FETCH_SMURFS_FAIL:
       return {
         ...state,
         fecthingSmurfs: false,
