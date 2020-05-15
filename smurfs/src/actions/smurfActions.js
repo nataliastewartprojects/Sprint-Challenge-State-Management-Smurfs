@@ -30,8 +30,8 @@ export const formSubmit = (formValues) => (dispatch) => {
     });
 };
 
-export const deleteFriend = (event) => (dispatch) => (item) => {
-  event.preventDefault();
+export const deleteFriend = (item) => (dispatch) => {
+  // event.preventDefault();
   axios
     .delete(`http://localhost:3333/smurfs/${item.id}`)
     .then((res) => {

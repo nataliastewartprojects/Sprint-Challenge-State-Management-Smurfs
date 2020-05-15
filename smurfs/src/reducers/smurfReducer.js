@@ -45,11 +45,12 @@ const reducer = (state = initialState, action) => {
         error: action.payload,
       };
     case DELETE_FRIEND:
+      const filter = state.smurfsGroup.filter(
+        (item) => item.id !== action.payload.id
+      );
       return {
         ...state,
-        smurfsGroup: [
-          ...state.smurfsGroup.filter((item) => item.id !== action.payload.id),
-        ],
+        smurfsGroup: filter,
       };
     default:
       return state;
