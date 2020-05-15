@@ -2,6 +2,8 @@ import {
   FETCH_SMURFS_START,
   FETCH_SMURFS_SUCCESS,
   FETCH_SMURFS_FAIL,
+  SUBMITTED_FORM,
+  ERROR_SUBMIT,
 } from "../actions";
 
 const initialState = {
@@ -25,6 +27,17 @@ const reducer = (state = initialState, action) => {
         error: "",
       };
     case FETCH_SMURFS_FAIL:
+      return {
+        ...state,
+        fecthingSmurfs: false,
+        error: action.payload,
+      };
+    case SUBMITTED_FORM:
+      return {
+        ...state,
+        smurfsGroup: [...state.smurfsGroup, action.payload],
+      };
+    case ERROR_SUBMIT:
       return {
         ...state,
         fecthingSmurfs: false,
