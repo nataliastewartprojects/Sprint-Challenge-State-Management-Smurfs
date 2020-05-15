@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { getSmurfs } from "../actions";
+import { getSmurfs, deleteFriend } from "../actions";
 
 const SmurfList = (props) => {
   const [search, setSearch] = useState("");
@@ -30,6 +30,10 @@ const SmurfList = (props) => {
             <h2>{item.name}</h2>
             <p>age:{item.age}</p>
             <p>height:{item.height}</p>
+            <p>id:{item.id}</p>
+            <button onClick={() => props.deleteFriend(item)}>
+              Delete Friend
+            </button>
           </div>
         );
       })}
@@ -44,4 +48,4 @@ const mapStateToProps = (state) => {
     error: state.error,
   };
 };
-export default connect(mapStateToProps, { getSmurfs })(SmurfList);
+export default connect(mapStateToProps, { getSmurfs, deleteFriend })(SmurfList);

@@ -4,6 +4,7 @@ export const FETCH_SMURFS_SUCCESS = "FETCH_SMURFS_SUCCESS";
 export const FETCH_SMURFS_FAIL = "FETCH_SMURFS_FAIL";
 export const SUBMITTED_FORM = "SUBMITTED_FORM";
 export const ERROR_SUBMIT = "ERROR_SUBMIT";
+export const DELETE_FRIEND = "DELETE_FRIEND";
 
 export const getSmurfs = () => (dispatch) => {
   dispatch({ type: FETCH_SMURFS_START });
@@ -27,4 +28,16 @@ export const formSubmit = (formValues) => (dispatch) => {
     .catch((err) => {
       dispatch({ type: "ERROR_SUBMIT", payload: err.res });
     });
+};
+
+export const deleteFriend = (event) => (dispatch) => (item) => {
+  event.preventDefault();
+  axios
+    .delete(`http://localhost:3333/smurfs/${item.id}`)
+    .then((res) => {
+      console.log("res.data - DELETE:", res.data);
+
+      dispatch({ type: "DELETE_FRIEND", payload: res.data });
+    })
+    .catch((err) => console.log("DELETE ERROR:", err));
 };

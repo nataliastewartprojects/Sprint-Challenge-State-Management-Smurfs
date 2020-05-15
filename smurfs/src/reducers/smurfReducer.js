@@ -4,6 +4,7 @@ import {
   FETCH_SMURFS_FAIL,
   SUBMITTED_FORM,
   ERROR_SUBMIT,
+  DELETE_FRIEND,
 } from "../actions";
 
 const initialState = {
@@ -42,6 +43,13 @@ const reducer = (state = initialState, action) => {
         ...state,
         fecthingSmurfs: false,
         error: action.payload,
+      };
+    case DELETE_FRIEND:
+      return {
+        ...state,
+        smurfsGroup: [
+          ...state.smurfsGroup.filter((item) => item.id !== action.payload.id),
+        ],
       };
     default:
       return state;
